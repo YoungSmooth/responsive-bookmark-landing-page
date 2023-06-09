@@ -2,6 +2,7 @@ import 'package:bookmark_landing_page/constants/constants.dart';
 import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:bookmark_landing_page/screens/screen_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,25 +15,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: createMaterialColor(hslBlueColor.toColor()),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          textTheme: GoogleFonts.rubikTextTheme(),
+          primaryColor:
+              createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: ColorManager.kHslRedColor.toColor()),
+          // typography: Typography(TextTheme(bodyMedium)),
           useMaterial3: true,
         ),
         home: const ScreenSelector());
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const ScreenSelector();
   }
 }
