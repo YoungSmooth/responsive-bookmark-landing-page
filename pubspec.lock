@@ -143,7 +143,7 @@ packages:
     source: hosted
     version: "2.0.1"
   flutter_svg:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_svg
       sha256: "6ff8c902c8056af9736de2689f63f81c42e2d642b9f4c79dbf8790ae48b63012"
@@ -163,6 +163,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
+  hovering:
+    dependency: "direct main"
+    description:
+      name: hovering
+      sha256: "0df77800487be6d29c8687fb775f53e1b308988c6e63a6a9c579cec701fbfe76"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   http:
     dependency: transitive
     description:
