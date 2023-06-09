@@ -1,4 +1,5 @@
 import 'package:bookmark_landing_page/constants/constants.dart';
+import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hovering/hovering.dart';
@@ -19,14 +20,18 @@ class _GetItOnChromeButtonState extends State<GetItOnChromeButton> {
         height: 40,
         hoverHeight: 39,
         decoration: BoxDecoration(
-          color: Colors.blue,
+          color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(width: 1, color: Colors.blue),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
         ),
         hoverDecoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(width: 1, color: Colors.blue),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
@@ -35,10 +40,11 @@ class _GetItOnChromeButtonState extends State<GetItOnChromeButton> {
             onHover: (void event) {
               setState(() {});
             },
-            hoverChild: const Text(
+            hoverChild: Text(
               'Get it on Chrome',
               style: TextStyle(
-                color: Colors.blue,
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor()),
                 fontSize: 13,
               ),
             ),
@@ -72,12 +78,12 @@ class _GetItOnFirefoxButtonState extends State<GetItOnFirefoxButton> {
         height: 40,
         hoverHeight: 39,
         decoration: BoxDecoration(
-          color: Colors.blueGrey.shade100,
+          color: Colors.white70,
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(width: 1, color: Colors.blueGrey.shade100),
+          border: Border.all(width: 1, color: Colors.white70),
         ),
         hoverDecoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white70,
           borderRadius: BorderRadius.circular(5),
           border: Border.all(width: 1, color: Colors.black),
         ),
@@ -265,41 +271,39 @@ class ASimpleBookmarkManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(left: 140, right: 30),
-      child: FittedBox(
-        child: SizedBox(
-          height: 200,
-          // width: 600,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                child: Text(
-                  'A Simple Bookmark Manager',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                ),
+      padding: EdgeInsets.only(left: 140, right: 100),
+      child: SizedBox(
+        height: 400,
+        // width: 600,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'A Simple Bookmark Manager',
+                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                child: Text(
-                  'A Clean and simple interface to organize your favorite websites. Open a new browser tab and see your sites load instantly. Try it for free.',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
-                ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'A Clean and simple interface to organize your favorite websites. Open a new browser tab and see your sites load instantly. Try it for free.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GetItOnChromeButton(),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5),
-                    child: GetItOnFirefoxButton(),
-                  )
-                ],
-              ),
-            ],
-          ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GetItOnChromeButton(),
+                Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: GetItOnFirefoxButton(),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -314,27 +318,36 @@ class FirstSvg extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-          // width: double.infinity,
-          height: 300,
-          width: 150,
+          height: 500,
           child: Row(
             children: [
-              Container(
-                height: 200,
-                decoration: const BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(100),
+              FittedBox(
+                child: Container(
+                  height: 300,
+                  width: 680,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(150)),
+                    color: createMaterialColor(
+                        ColorManager.kHslBlueColor.toColor()),
                   ),
+                  child: Card(
+                    color: Colors.red,
+                  ),
+
+                  // width: 400,
                 ),
               ),
             ],
           ),
         ),
         Positioned.fill(
-          child: SvgPicture.asset(
-            SvgManager.websiteSearch,
-            height: 100,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: SvgPicture.asset(
+              SvgManager.websiteSearch,
+              height: 250,
+            ),
           ),
         )
       ],
