@@ -1,3 +1,4 @@
+import 'package:bookmark_landing_page/components/components.dart';
 import 'package:bookmark_landing_page/components/desktop_header.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,18 @@ class _DesktopScreenState extends State<DesktopScreen> {
         child: Column(
           children: [
             DesktopHeader(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 35.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(flex: 1, child: ASimpleBookmarkManager()),
+                  Expanded(flex: 1, child: FirstSvg())
+                ],
+              ),
+            ),
+            FeaturesBox()
           ],
         ),
       ),

@@ -271,9 +271,10 @@ class ASimpleBookmarkManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(left: 140, right: 100),
+      // padding: EdgeInsets.only(left: 140, right: 100),
+      padding: EdgeInsets.symmetric(horizontal: 80),
       child: SizedBox(
-        height: 400,
+        // height: 400,
         // width: 600,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -315,41 +316,58 @@ class FirstSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          height: 500,
-          child: Row(
-            children: [
-              FittedBox(
-                child: Container(
-                  height: 300,
-                  width: 680,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(150)),
-                    color: createMaterialColor(
-                        ColorManager.kHslBlueColor.toColor()),
-                  ),
-                  child: Card(
-                    color: Colors.red,
-                  ),
+    return SizedBox(
+      height: 400,
+      child: Center(
+        child: SvgPicture.asset(
+          SvgManager.websiteSearch,
+          height: 400,
+        ),
+      ),
+    );
+  }
+}
 
-                  // width: 400,
+class FeaturesBox extends StatelessWidget {
+  const FeaturesBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        Spacer(
+          flex: 1,
+        ),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              Text(
+                'Features',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '  Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
         ),
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: SvgPicture.asset(
-              SvgManager.websiteSearch,
-              height: 250,
-            ),
-          ),
-        )
+        Spacer(
+          flex: 1,
+        ),
       ],
     );
   }

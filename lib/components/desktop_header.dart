@@ -45,24 +45,6 @@ class DesktopHeader extends StatelessWidget {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 35.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(flex: 1, child: ASimpleBookmarkManager()),
-                Expanded(
-                    flex: 1,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        FirstSvg(),
-                      ],
-                    ))
-              ],
-            ),
-          )
         ],
       ),
     );
