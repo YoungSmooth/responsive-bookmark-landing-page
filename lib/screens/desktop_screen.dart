@@ -28,7 +28,75 @@ class _DesktopScreenState extends State<DesktopScreen> {
                 ],
               ),
             ),
-            FeaturesBox()
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 35.0),
+              child: FeaturesBox(),
+            ),
+            SizedBox(
+              // color: Colors.blueGrey,
+              height: 400,
+              child: DefaultTabController(
+                length: 3,
+                child: Scaffold(
+                  // extendBody: true,
+                  body: Column(
+                    children: [
+                      TabBar(
+                        isScrollable: false,
+                        labelColor: Colors.black,
+                        indicatorColor: Colors.red,
+                        tabs: [
+                          Tab(
+                            text: 'Simple Bookmarking',
+                          ),
+                          Tab(
+                            text: 'Speedy Searching',
+                          ),
+                          Tab(
+                            text: 'Easy Sharing',
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            SimpleBookmarking(),
+                            SimpleBookmarking(),
+                            SimpleBookmarking(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            DownloadTheExtension(),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: SizedBox(
+                height: 350,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: AddToChrome(),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      child: AddToFirefox(),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                      child: AddToOpera(),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

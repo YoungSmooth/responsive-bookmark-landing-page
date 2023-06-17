@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: GoogleFonts.rubikTextTheme(),
-          primaryColor:
-              createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: ColorManager.kHslRedColor.toColor()),
+          // primaryColor:
+          //     createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+          // colorScheme: ColorScheme.fromSeed(
+          //     seedColor: ColorManager.kHslRedColor.toColor()),
           // typography: Typography(TextTheme(bodyMedium)),
           useMaterial3: true,
         ),

@@ -62,6 +62,124 @@ class _GetItOnChromeButtonState extends State<GetItOnChromeButton> {
   }
 }
 
+class MoreInfoButton extends StatefulWidget {
+  const MoreInfoButton({super.key});
+
+  @override
+  State<MoreInfoButton> createState() => _MoreInfoButtonState();
+}
+
+class _MoreInfoButtonState extends State<MoreInfoButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: HoverContainer(
+        height: 40,
+        hoverHeight: 39,
+        decoration: BoxDecoration(
+          color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+        ),
+        hoverDecoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
+          child: Center(
+              child: HoverWidget(
+            onHover: (void event) {
+              setState(() {});
+            },
+            hoverChild: Text(
+              'More Info',
+              style: TextStyle(
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+                fontSize: 13,
+              ),
+            ),
+            child: const Text(
+              'More Info',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+          )),
+        ),
+      ),
+    );
+  }
+}
+
+class AddAndInstallExtensionButton extends StatefulWidget {
+  const AddAndInstallExtensionButton({super.key});
+
+  @override
+  State<AddAndInstallExtensionButton> createState() =>
+      _AddAndInstallExtensionButtonState();
+}
+
+class _AddAndInstallExtensionButtonState
+    extends State<AddAndInstallExtensionButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: HoverContainer(
+        height: 40,
+        hoverHeight: 39,
+        decoration: BoxDecoration(
+          color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+        ),
+        hoverDecoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
+          child: Center(
+              child: HoverWidget(
+            onHover: (void event) {
+              setState(() {});
+            },
+            hoverChild: Text(
+              'Add & Install Extension',
+              style: TextStyle(
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+                fontSize: 13,
+              ),
+            ),
+            child: const Text(
+              'Add & Install Extension',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+          )),
+        ),
+      ),
+    );
+  }
+}
+
 class GetItOnFirefoxButton extends StatefulWidget {
   const GetItOnFirefoxButton({super.key});
 
@@ -311,6 +429,45 @@ class ASimpleBookmarkManager extends StatelessWidget {
   }
 }
 
+class BookmarkInOneClick extends StatelessWidget {
+  const BookmarkInOneClick({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 80),
+      child: SizedBox(
+        height: 350,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'Bookmark in one click',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MoreInfoButton(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class FirstSvg extends StatelessWidget {
   const FirstSvg({super.key});
 
@@ -354,7 +511,7 @@ class FeaturesBox extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    '  Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
+                    'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -369,6 +526,213 @@ class FeaturesBox extends StatelessWidget {
           flex: 1,
         ),
       ],
+    );
+  }
+}
+
+class DownloadTheExtension extends StatelessWidget {
+  const DownloadTheExtension({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 50),
+      child: Row(
+        children: [
+          Spacer(
+            flex: 1,
+          ),
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                Text(
+                  'Download the Extension',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "We have got more browswers in the pipeline. Please do let us know if you've got a favorite you'd like us to prioritize",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Spacer(
+            flex: 1,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SimpleBookmarking extends StatelessWidget {
+  const SimpleBookmarking({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 50,
+              ),
+              child: SvgPicture.asset(
+                SvgManager.websiteSearch2,
+                height: 500,
+              ),
+            )),
+        const Expanded(
+            flex: 1,
+            child: Center(
+                child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50),
+              child: BookmarkInOneClick(),
+            )))
+      ],
+    );
+  }
+}
+
+class AddToChrome extends StatelessWidget {
+  const AddToChrome({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 280,
+      width: 220,
+      child: Card(
+        color: Colors.white,
+        elevation: 10,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SvgPicture.asset(
+                SvgManager.logoChrome,
+                height: 80,
+              ),
+              const Text(
+                'Add to Chrome',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const Text(
+                'Minimum version 62',
+                style: TextStyle(color: Colors.grey, fontSize: 11),
+              ),
+              SvgPicture.asset(
+                SvgManager.bgDots,
+                height: 20,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: AddAndInstallExtensionButton(),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AddToFirefox extends StatelessWidget {
+  const AddToFirefox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 280,
+      width: 220,
+      child: Card(
+        color: Colors.white,
+        elevation: 10,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SvgPicture.asset(
+                SvgManager.logoFirefox,
+                height: 80,
+              ),
+              const Text(
+                'Add to Firefox',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const Text(
+                'Minimum version 55',
+                style: TextStyle(color: Colors.grey, fontSize: 11),
+              ),
+              SvgPicture.asset(
+                SvgManager.bgDots,
+                height: 20,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: AddAndInstallExtensionButton(),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AddToOpera extends StatelessWidget {
+  const AddToOpera({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 280,
+      width: 220,
+      child: Card(
+        color: Colors.white,
+        elevation: 10,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SvgPicture.asset(
+                SvgManager.opera,
+                height: 80,
+              ),
+              const Text(
+                'Add to Opera',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const Text(
+                'Minimum version 46',
+                style: TextStyle(color: Colors.grey, fontSize: 11),
+              ),
+              SvgPicture.asset(
+                SvgManager.bgDots,
+                height: 20,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: AddAndInstallExtensionButton(),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
