@@ -617,8 +617,9 @@ class AddToChrome extends StatelessWidget {
       height: 280,
       width: 220,
       child: Card(
-        color: Colors.white,
-        elevation: 10,
+        surfaceTintColor: Colors.white,
+        shadowColor: Colors.lightGreenAccent,
+        elevation: 5,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -660,8 +661,9 @@ class AddToFirefox extends StatelessWidget {
       height: 280,
       width: 220,
       child: Card(
-        color: Colors.white,
-        elevation: 10,
+        surfaceTintColor: Colors.white,
+        shadowColor: Colors.lightGreenAccent,
+        elevation: 5,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -703,8 +705,9 @@ class AddToOpera extends StatelessWidget {
       height: 280,
       width: 220,
       child: Card(
-        color: Colors.white,
-        elevation: 10,
+        surfaceTintColor: Colors.white,
+        shadowColor: Colors.lightGreenAccent,
+        elevation: 5,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -732,6 +735,197 @@ class AddToOpera extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FrequentlyAskedQuestions extends StatelessWidget {
+  const FrequentlyAskedQuestions({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 50),
+      child: Row(
+        children: [
+          const Spacer(
+            flex: 1,
+          ),
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                const Text(
+                  'Frequently Asked Questions',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 30),
+                          child: Text(
+                            "Here are some of our FAQs. If you have any other questions you'd like answered please feel free to email us.",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        ExpansionTile(
+                          title: HoverWidget(
+                            onHover: (void event) {
+                              null;
+                            },
+                            hoverChild: const Text(
+                              'What is Bookmark?',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                            child: const Text(
+                              'What is Bookmark?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          iconColor: Colors.red,
+                          collapsedIconColor: Colors.blue,
+                          children: const [
+                            ListTile(
+                              title: Text(
+                                'A bookmark is a Uniform Resource Identifier that is stored for later retrieval in any of various storage formats. All modern web browsers include bookmark features.',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        ExpansionTile(
+                          title: HoverWidget(
+                            onHover: (void event) {
+                              null;
+                            },
+                            hoverChild: const Text(
+                              'How can I request a new browser?',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                            child: const Text(
+                              'How can I request a new browser?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          iconColor: Colors.red,
+                          collapsedIconColor: Colors.blue,
+                          children: const [
+                            ListTile(
+                              title: Text(
+                                'A web browser is no different to any other program on your computer, phone or tablet. So in the same way that you might have more than one Word Processing program or more than one Music Player installed at the same time, you can also have more than one web browser installed.',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        ExpansionTile(
+                          title: HoverWidget(
+                            onHover: (void event) {
+                              null;
+                            },
+                            hoverChild: const Text(
+                              'Is there a mobile app?',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                            child: const Text(
+                              'Is there a mobile app?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          iconColor: Colors.red,
+                          collapsedIconColor: Colors.blue,
+                          children: const [
+                            ListTile(
+                              title: Text(
+                                'A mobile application or app is a computer program or software application designed to run on a mobile device such as a phone, tablet, or watch. Mobile applications often stand in contrast to desktop applications which are designed to run on desktop computers, and web applications which run in mobile web browsers rather than directly on the mobile device.',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        ExpansionTile(
+                          title: HoverWidget(
+                            onHover: (void event) {
+                              null;
+                            },
+                            hoverChild: const Text(
+                              'What about other chromium browsers?',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                              ),
+                            ),
+                            child: const Text(
+                              'What about other chromium browsers?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          iconColor: Colors.red,
+                          collapsedIconColor: Colors.blue,
+                          children: const [
+                            ListTile(
+                              title: Text(
+                                'Chromium is a free and open-source web browser project, mainly developed and maintained by Google. This codebase provides the vast majority of code for the Google Chrome browser, which is proprietary software and has some additional features.',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Spacer(
+            flex: 1,
+          ),
+        ],
       ),
     );
   }

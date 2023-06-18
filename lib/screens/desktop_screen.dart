@@ -1,5 +1,6 @@
 import 'package:bookmark_landing_page/components/components.dart';
 import 'package:bookmark_landing_page/components/desktop_header.dart';
+import 'package:bookmark_landing_page/components/dropdown_menu.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScreen extends StatefulWidget {
@@ -81,21 +82,59 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: AddToChrome(),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 0,
+                          ),
+                          AddToChrome(),
+                        ],
+                      ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                      child: AddToFirefox(),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 25,
+                          ),
+                          AddToFirefox(),
+                        ],
+                      ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-                      child: AddToOpera(),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 50,
+                          ),
+                          AddToOpera(),
+                        ],
+                      ),
                     )
                   ],
                 ),
               ),
+            ),
+            FrequentlyAskedQuestions(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        MoreInfoButton(),
+                      ],
+                    )),
+                Spacer(
+                  flex: 1,
+                ),
+              ],
             )
           ],
         ),

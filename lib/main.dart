@@ -1,5 +1,3 @@
-import 'package:bookmark_landing_page/constants/constants.dart';
-import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:bookmark_landing_page/screens/screen_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +14,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           textTheme: GoogleFonts.rubikTextTheme(),
+          cardTheme: const CardTheme(color: Colors.white),
           // primaryColor:
           //     createMaterialColor(ColorManager.kHslBlueColor.toColor()),
           // colorScheme: ColorScheme.fromSeed(
