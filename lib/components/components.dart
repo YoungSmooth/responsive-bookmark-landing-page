@@ -542,33 +542,41 @@ class ASimpleBookmarkManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      // padding: EdgeInsets.only(left: 140, right: 100),
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 80),
       child: SizedBox(
-        // height: 400,
-        // width: 600,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'A Simple Bookmark Manager',
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: isDesktop(context) ? 45 : 35,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'A Clean and simple interface to organize your favorite websites. Open a new browser tab and see your sites load instantly. Try it for free.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              crossAxisAlignment: isDesktop(context)
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
+              mainAxisAlignment: !isDesktop(context)
+                  ? MainAxisAlignment.spaceEvenly
+                  : MainAxisAlignment.start,
+              children: const [
                 GetItOnChromeButton(),
                 Padding(
                   padding: EdgeInsets.only(left: 5),
@@ -722,23 +730,32 @@ class FeaturesBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return Row(
       children: [
-        Spacer(
-          flex: 1,
-        ),
+        isDesktop(context)
+            ? const Spacer(
+                flex: 1,
+              )
+            : Container(),
         Expanded(
           flex: 1,
           child: Column(
             children: [
-              Text(
-                'Features',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
               Padding(
+                padding: isDesktop(context)
+                    ? const EdgeInsets.only(top: 50)
+                    : const EdgeInsets.only(top: 0),
+                child: Text(
+                  'Features',
+                  style: TextStyle(
+                      fontSize: isDesktop(context) ? 20 : 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Align(
                   alignment: Alignment.center,
@@ -755,9 +772,11 @@ class FeaturesBox extends StatelessWidget {
             ],
           ),
         ),
-        Spacer(
-          flex: 1,
-        ),
+        isDesktop(context)
+            ? const Spacer(
+                flex: 1,
+              )
+            : Container(),
       ],
     );
   }
@@ -1285,7 +1304,7 @@ class _StayUpToDateState extends State<StayUpToDate> {
                                   filled: true,
                                 ),
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(fontSize: 13),
+                                style: const TextStyle(fontSize: 11),
                                 validator: (value) {
                                   RegExp emailCheck = RegExp(
                                     r"[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
@@ -1293,7 +1312,6 @@ class _StayUpToDateState extends State<StayUpToDate> {
                                   );
                                   RegExp ipCheck = RegExp(
                                     r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
-                                    caseSensitive: false,
                                   );
                                   RegExp urlCheck = RegExp(
                                     r"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?",
@@ -1301,18 +1319,17 @@ class _StayUpToDateState extends State<StayUpToDate> {
                                   );
                                   RegExp domainCheck = RegExp(
                                     r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$",
-                                    caseSensitive: false,
                                   );
                                   if (value == null || value.isEmpty) {
                                     return "input your email";
-                                  } else if (!value.contains(emailCheck)) {
-                                    return 'Please enter a valid email address.';
-                                  } else if (!value.contains(ipCheck)) {
-                                    return 'Please enter a valid email address.';
-                                  } else if (!value.contains(urlCheck)) {
-                                    return 'Please enter a valid email address.';
-                                  } else if (!value.contains(domainCheck)) {
-                                    return 'Please enter a valid email address.';
+                                  } else if (!emailCheck.hasMatch(value)) {
+                                    return "Whoops, make sure it's an email.";
+                                  } else if (!ipCheck.hasMatch(value)) {
+                                    return 'ip check.';
+                                  } else if (!urlCheck.hasMatch(value)) {
+                                    return 'url check.';
+                                  } else if (!domainCheck.hasMatch(value)) {
+                                    return 'domain check.';
                                   } else {
                                     return null;
                                   }

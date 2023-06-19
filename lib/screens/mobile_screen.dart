@@ -1,4 +1,7 @@
+import 'package:bookmark_landing_page/components/components.dart';
+import 'package:bookmark_landing_page/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MobileScreen extends StatefulWidget {
   const MobileScreen({super.key});
@@ -29,9 +32,38 @@ class _MobileScreenState extends State<MobileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 30),
+                  child: SvgPicture.asset(
+                    SvgManager.logoBookmark,
+                    height: 20,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right: 30, top: 30),
+                  child: Icon(
+                    Icons.menu,
+                    size: 25,
+                    color: Colors.black,
+                  ),
+                )
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 50, bottom: 30),
+              child: FirstSvg(),
+            ),
+            const ASimpleBookmarkManager(),
+            const FeaturesBox()
+          ],
+        ),
       ),
     );
   }
