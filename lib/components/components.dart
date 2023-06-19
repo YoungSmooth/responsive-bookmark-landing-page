@@ -3,7 +3,6 @@ import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hovering/hovering.dart';
-import 'package:flutter/services.dart';
 
 class GetItOnChromeButton extends StatefulWidget {
   const GetItOnChromeButton({super.key});
@@ -914,7 +913,7 @@ class AddToChrome extends StatelessWidget {
       child: Card(
         surfaceTintColor: Colors.white,
         shadowColor: Colors.lightGreenAccent,
-        elevation: 5,
+        elevation: 10,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -958,7 +957,7 @@ class AddToFirefox extends StatelessWidget {
       child: Card(
         surfaceTintColor: Colors.white,
         shadowColor: Colors.lightGreenAccent,
-        elevation: 5,
+        elevation: 10,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1002,7 +1001,7 @@ class AddToOpera extends StatelessWidget {
       child: Card(
         surfaceTintColor: Colors.white,
         shadowColor: Colors.lightGreenAccent,
-        elevation: 5,
+        elevation: 10,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

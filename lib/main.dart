@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          primaryColor: Colors.white,
           textTheme: GoogleFonts.rubikTextTheme(),
           cardTheme: const CardTheme(color: Colors.white),
           useMaterial3: true,
