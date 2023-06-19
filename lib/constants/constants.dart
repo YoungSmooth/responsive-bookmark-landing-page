@@ -6,6 +6,7 @@ class ColorManager {
   static const kHslRedColor = HSLColor.fromAHSL(1.0, 0, 0.94, 0.66);
   static const kGrayishBlue = HSLColor.fromAHSL(1.0, 229, 0.08, 0.6);
   static const kDarkBlue = HSLColor.fromAHSL(1.0, 229, 0.31, 0.21);
+  static const kFooterColor = Color.fromARGB(0, 3, 11, 43);
 }
 
 class SvgManager {

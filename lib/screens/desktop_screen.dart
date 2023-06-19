@@ -1,6 +1,5 @@
 import 'package:bookmark_landing_page/components/components.dart';
 import 'package:bookmark_landing_page/components/desktop_header.dart';
-import 'package:bookmark_landing_page/components/dropdown_menu.dart';
 import 'package:flutter/material.dart';
 
 class DesktopScreen extends StatefulWidget {
@@ -62,8 +61,8 @@ class _DesktopScreenState extends State<DesktopScreen> {
                         child: TabBarView(
                           children: [
                             SimpleBookmarking(),
-                            SimpleBookmarking(),
-                            SimpleBookmarking(),
+                            SpeedySearching(),
+                            EasySharing(),
                           ],
                         ),
                       )
@@ -118,24 +117,29 @@ class _DesktopScreenState extends State<DesktopScreen> {
               ),
             ),
             FrequentlyAskedQuestions(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Spacer(
-                  flex: 1,
-                ),
-                Expanded(
+            Padding(
+              padding: EdgeInsets.only(bottom: 100),
+              child: Row(
+                children: [
+                  Spacer(
                     flex: 1,
-                    child: Column(
-                      children: [
-                        MoreInfoButton(),
-                      ],
-                    )),
-                Spacer(
-                  flex: 1,
-                ),
-              ],
-            )
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MoreInfoButton(),
+                        ],
+                      )),
+                  Spacer(
+                    flex: 1,
+                  ),
+                ],
+              ),
+            ),
+            StayUpToDate(),
+            LastRow()
           ],
         ),
       ),

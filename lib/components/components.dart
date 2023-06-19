@@ -3,6 +3,7 @@ import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hovering/hovering.dart';
+import 'package:flutter/services.dart';
 
 class GetItOnChromeButton extends StatefulWidget {
   const GetItOnChromeButton({super.key});
@@ -108,6 +109,64 @@ class _MoreInfoButtonState extends State<MoreInfoButton> {
             ),
             child: const Text(
               'More Info',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+          )),
+        ),
+      ),
+    );
+  }
+}
+
+class ContactUsButton extends StatefulWidget {
+  const ContactUsButton({super.key});
+
+  @override
+  State<ContactUsButton> createState() => _ContactUsButtonState();
+}
+
+class _ContactUsButtonState extends State<ContactUsButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      child: HoverContainer(
+        height: 50,
+        hoverHeight: 50,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+              width: 1,
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+        ),
+        hoverDecoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(
+            width: 1,
+            color: Colors.red,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
+          child: Center(
+              child: HoverWidget(
+            onHover: (void event) {
+              setState(() {});
+            },
+            hoverChild: const Text(
+              'Contact Us',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 13,
+              ),
+            ),
+            child: const Text(
+              'Contact Us',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 13,
@@ -319,6 +378,38 @@ class _FeaturesButtonState extends State<FeaturesButton> {
   }
 }
 
+class FeaturesButton2 extends StatefulWidget {
+  const FeaturesButton2({super.key});
+
+  @override
+  State<FeaturesButton2> createState() => _FeaturesButton2State();
+}
+
+class _FeaturesButton2State extends State<FeaturesButton2> {
+  @override
+  Widget build(BuildContext context) {
+    return HoverWidget(
+      onHover: (void event) {
+        setState(() {});
+      },
+      hoverChild: const Text(
+        'FEATURES',
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 12,
+        ),
+      ),
+      child: const Text(
+        'FEATURES',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+        ),
+      ),
+    );
+  }
+}
+
 class PricingButton extends StatefulWidget {
   const PricingButton({super.key});
 
@@ -351,6 +442,38 @@ class _PricingButtonState extends State<PricingButton> {
   }
 }
 
+class PricingButton2 extends StatefulWidget {
+  const PricingButton2({super.key});
+
+  @override
+  State<PricingButton2> createState() => _PricingButton2State();
+}
+
+class _PricingButton2State extends State<PricingButton2> {
+  @override
+  Widget build(BuildContext context) {
+    return HoverWidget(
+      onHover: (void event) {
+        setState(() {});
+      },
+      hoverChild: const Text(
+        'PRICING',
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 12,
+        ),
+      ),
+      child: const Text(
+        'PRICING',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+        ),
+      ),
+    );
+  }
+}
+
 class ContactButton extends StatefulWidget {
   const ContactButton({super.key});
 
@@ -376,6 +499,38 @@ class _ContactButtonState extends State<ContactButton> {
         'CONTACT',
         style: TextStyle(
           color: Colors.black,
+          fontSize: 12,
+        ),
+      ),
+    );
+  }
+}
+
+class ContactButton2 extends StatefulWidget {
+  const ContactButton2({super.key});
+
+  @override
+  State<ContactButton2> createState() => _ContactButton2State();
+}
+
+class _ContactButton2State extends State<ContactButton2> {
+  @override
+  Widget build(BuildContext context) {
+    return HoverWidget(
+      onHover: (void event) {
+        setState(() {});
+      },
+      hoverChild: const Text(
+        'CONTACT',
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 12,
+        ),
+      ),
+      child: const Text(
+        'CONTACT',
+        style: TextStyle(
+          color: Colors.white,
           fontSize: 12,
         ),
       ),
@@ -449,9 +604,87 @@ class BookmarkInOneClick extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: EdgeInsets.only(top: 10, bottom: 10, right: 80),
               child: Text(
                 'Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MoreInfoButton(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class IntelligentSearch extends StatelessWidget {
+  const IntelligentSearch({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 80),
+      child: SizedBox(
+        height: 350,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'Intelligent Search',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10, right: 90),
+              child: Text(
+                'Our powerful search feature will help you find saved sites in no time at all. No need to trawl through all of your bookmarks.',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MoreInfoButton(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ShareYourBookmarks extends StatelessWidget {
+  const ShareYourBookmarks({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 80),
+      child: SizedBox(
+        height: 350,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Text(
+                'Share Your Bookmarks',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10, right: 90),
+              child: Text(
+                'Easily share your bookmarks and collections with others. Create a shareable link that you can send at the clik of a button.',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
             ),
@@ -516,6 +749,7 @@ class FeaturesBox extends StatelessWidget {
                       fontSize: 16,
                       color: Colors.grey,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -563,6 +797,7 @@ class DownloadTheExtension extends StatelessWidget {
                         fontSize: 16,
                         color: Colors.grey,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
@@ -602,6 +837,66 @@ class SimpleBookmarking extends StatelessWidget {
                 child: Padding(
               padding: EdgeInsets.symmetric(vertical: 50),
               child: BookmarkInOneClick(),
+            )))
+      ],
+    );
+  }
+}
+
+class SpeedySearching extends StatelessWidget {
+  const SpeedySearching({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 50,
+              ),
+              child: SvgPicture.asset(
+                SvgManager.websiteSetup,
+                height: 500,
+              ),
+            )),
+        const Expanded(
+            flex: 1,
+            child: Center(
+                child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50),
+              child: IntelligentSearch(),
+            )))
+      ],
+    );
+  }
+}
+
+class EasySharing extends StatelessWidget {
+  const EasySharing({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 50,
+              ),
+              child: SvgPicture.asset(
+                SvgManager.websiteSetup2,
+                height: 500,
+              ),
+            )),
+        const Expanded(
+            flex: 1,
+            child: Center(
+                child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 50),
+              child: ShareYourBookmarks(),
             )))
       ],
     );
@@ -746,7 +1041,7 @@ class FrequentlyAskedQuestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
         children: [
           const Spacer(
@@ -777,6 +1072,7 @@ class FrequentlyAskedQuestions extends StatelessWidget {
                               fontSize: 16,
                               color: Colors.grey,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         ExpansionTile(
@@ -925,6 +1221,192 @@ class FrequentlyAskedQuestions extends StatelessWidget {
           const Spacer(
             flex: 1,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class StayUpToDate extends StatefulWidget {
+  const StayUpToDate({super.key});
+
+  @override
+  State<StayUpToDate> createState() => _StayUpToDateState();
+}
+
+class _StayUpToDateState extends State<StayUpToDate> {
+  final _formKey = GlobalKey<FormState>();
+
+  void _confirmEmail() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.reset();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 350,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+      child: Row(
+        children: [
+          const Spacer(flex: 1),
+          Expanded(
+            flex: 1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  '35,000 +  ALREADY JOINED',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                const Text(
+                  "Stay up-to-date with what we're doing",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  textAlign: TextAlign.center,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 220,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Form(
+                              key: _formKey,
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  hintText: 'Enter your email address',
+                                  border: OutlineInputBorder(),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                ),
+                                keyboardType: TextInputType.emailAddress,
+                                style: const TextStyle(fontSize: 13),
+                                validator: (value) {
+                                  RegExp emailCheck = RegExp(
+                                    r"[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+                                    caseSensitive: false,
+                                  );
+                                  RegExp ipCheck = RegExp(
+                                    r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
+                                    caseSensitive: false,
+                                  );
+                                  RegExp urlCheck = RegExp(
+                                    r"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?",
+                                    caseSensitive: false,
+                                  );
+                                  RegExp domainCheck = RegExp(
+                                    r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$",
+                                    caseSensitive: false,
+                                  );
+                                  if (value == null || value.isEmpty) {
+                                    return "input your email";
+                                  } else if (!value.contains(emailCheck)) {
+                                    return 'Please enter a valid email address.';
+                                  } else if (!value.contains(ipCheck)) {
+                                    return 'Please enter a valid email address.';
+                                  } else if (!value.contains(urlCheck)) {
+                                    return 'Please enter a valid email address.';
+                                  } else if (!value.contains(domainCheck)) {
+                                    return 'Please enter a valid email address.';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                        onTap: _confirmEmail, child: const ContactUsButton())
+                  ],
+                )
+              ],
+            ),
+          ),
+          const Spacer(flex: 1),
+        ],
+      ),
+    );
+  }
+}
+
+class LastRow extends StatelessWidget {
+  const LastRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: double.infinity,
+      color: const Color.fromARGB(255, 31, 31, 34),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 140),
+                child: SvgPicture.asset(
+                  SvgManager.logoBookmark,
+                  height: 20,
+                ),
+              ),
+              const Padding(
+                  padding: EdgeInsets.only(left: 70, right: 20),
+                  child: FeaturesButton2()),
+              const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: PricingButton2()),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: ContactButton2(),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20),
+                child: HoverWidget(
+                  onHover: (void event) {},
+                  hoverChild: SvgPicture.asset(
+                    SvgManager.facebook,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+                  ),
+                  child: SvgPicture.asset(
+                    SvgManager.facebook,
+                    height: 20,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 140, left: 20),
+                child: HoverWidget(
+                  onHover: (void event) {},
+                  hoverChild: SvgPicture.asset(
+                    SvgManager.twitter,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+                  ),
+                  child: SvgPicture.asset(
+                    SvgManager.twitter,
+                    height: 20,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

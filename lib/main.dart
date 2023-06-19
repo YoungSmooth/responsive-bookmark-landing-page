@@ -15,11 +15,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.rubikTextTheme(),
           cardTheme: const CardTheme(color: Colors.white),
-          // primaryColor:
-          //     createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-          // colorScheme: ColorScheme.fromSeed(
-          //     seedColor: ColorManager.kHslRedColor.toColor()),
-          // typography: Typography(TextTheme(bodyMedium)),
           useMaterial3: true,
         ),
         home: const ScreenSelector());
