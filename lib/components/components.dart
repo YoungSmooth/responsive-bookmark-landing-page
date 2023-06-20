@@ -545,13 +545,13 @@ class ASimpleBookmarkManager extends StatelessWidget {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 80),
+      padding: const EdgeInsets.symmetric(horizontal: 80),
       child: SizedBox(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'A Simple Bookmark Manager',
                 style: TextStyle(
@@ -562,7 +562,7 @@ class ASimpleBookmarkManager extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'A Clean and simple interface to organize your favorite websites. Open a new browser tab and see your sites load instantly. Try it for free.',
                 style: const TextStyle(fontSize: 16, color: Colors.grey),
@@ -755,9 +755,11 @@ class FeaturesBox extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                child: Align(
+              Padding(
+                padding: isDesktop(context)
+                    ? const EdgeInsets.only(top: 10, bottom: 10)
+                    : const EdgeInsets.only(left: 50, right: 50),
+                child: const Align(
                   alignment: Alignment.center,
                   child: Text(
                     'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',

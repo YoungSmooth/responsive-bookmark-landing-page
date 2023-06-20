@@ -57,10 +57,13 @@ class _MobileScreenState extends State<MobileScreen> {
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 50, bottom: 30),
+              padding: EdgeInsets.only(top: 80, bottom: 30),
               child: FirstSvg(),
             ),
             const ASimpleBookmarkManager(),
+            const SizedBox(
+              height: 120,
+            ),
             const FeaturesBox()
           ],
         ),
