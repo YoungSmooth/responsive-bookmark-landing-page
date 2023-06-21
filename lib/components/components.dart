@@ -599,7 +599,7 @@ class BookmarkInOneClick extends StatelessWidget {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 20),
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 40),
       child: SizedBox(
         height: 350,
         child: Column(
@@ -646,7 +646,7 @@ class IntelligentSearch extends StatelessWidget {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 20),
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 40),
       child: SizedBox(
         height: 350,
         child: Column(
@@ -691,11 +691,13 @@ class ShareYourBookmarks extends StatelessWidget {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 40),
       child: SizedBox(
         height: 350,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: isDesktop(context)
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
           children: [
             const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -704,11 +706,12 @@ class ShareYourBookmarks extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 10),
               child: Text(
                 'Easily share your bookmarks and collections with others. Create a shareable link that you can send at the clik of a button.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Row(
@@ -774,7 +777,7 @@ class FeaturesBox extends StatelessWidget {
               Padding(
                 padding: isDesktop(context)
                     ? const EdgeInsets.only(top: 10, bottom: 10)
-                    : const EdgeInsets.only(left: 50, right: 50),
+                    : const EdgeInsets.only(left: 40, right: 40),
                 child: const Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -805,15 +808,52 @@ class DownloadTheExtension extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 50),
-      child: Row(
-        children: [
-          Spacer(
-            flex: 1,
-          ),
-          Expanded(
-            flex: 1,
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? const Padding(
+            padding: EdgeInsets.symmetric(vertical: 50),
+            child: Row(
+              children: [
+                Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Download the Extension',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10, bottom: 10),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "We have got more browswers in the pipeline. Please do let us know if you've got a favorite you'd like us to prioritize",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(
+                  flex: 1,
+                ),
+              ],
+            ),
+          )
+        : const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, top: 100, bottom: 30),
             child: Column(
               children: [
                 Text(
@@ -839,13 +879,7 @@ class DownloadTheExtension extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Spacer(
-            flex: 1,
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
 
@@ -1023,11 +1057,11 @@ class AddToChrome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280,
-      width: 220,
+      height: 330,
+      width: 270,
       child: Card(
         surfaceTintColor: Colors.white,
-        shadowColor: Colors.lightGreenAccent,
+        shadowColor: Colors.lightBlue,
         elevation: 10,
         child: Center(
           child: Column(
@@ -1067,11 +1101,11 @@ class AddToFirefox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280,
-      width: 220,
+      height: 330,
+      width: 270,
       child: Card(
         surfaceTintColor: Colors.white,
-        shadowColor: Colors.lightGreenAccent,
+        shadowColor: Colors.lightBlue,
         elevation: 10,
         child: Center(
           child: Column(
@@ -1111,11 +1145,11 @@ class AddToOpera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280,
-      width: 220,
+      height: 330,
+      width: 270,
       child: Card(
         surfaceTintColor: Colors.white,
-        shadowColor: Colors.lightGreenAccent,
+        shadowColor: Colors.lightBlue,
         elevation: 10,
         child: Center(
           child: Column(
@@ -1154,15 +1188,195 @@ class FrequentlyAskedQuestions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        children: [
-          const Spacer(
-            flex: 1,
-          ),
-          Expanded(
-            flex: 1,
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              children: [
+                const Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Frequently Asked Questions',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 30),
+                                child: Text(
+                                  "Here are some of our FAQs. If you have any other questions you'd like answered please feel free to email us.",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              ExpansionTile(
+                                title: HoverWidget(
+                                  onHover: (void event) {
+                                    null;
+                                  },
+                                  hoverChild: const Text(
+                                    'What is Bookmark?',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'What is Bookmark?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                iconColor: Colors.red,
+                                collapsedIconColor: Colors.blue,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      'A bookmark is a Uniform Resource Identifier that is stored for later retrieval in any of various storage formats. All modern web browsers include bookmark features.',
+                                      style: TextStyle(
+                                        fontSize: isDesktop(context) ? 13 : 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              ExpansionTile(
+                                title: HoverWidget(
+                                  onHover: (void event) {
+                                    null;
+                                  },
+                                  hoverChild: const Text(
+                                    'How can I request a new browser?',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'How can I request a new browser?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                iconColor: Colors.red,
+                                collapsedIconColor: Colors.blue,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      'A web browser is no different to any other program on your computer, phone or tablet. So in the same way that you might have more than one Word Processing program or more than one Music Player installed at the same time, you can also have more than one web browser installed.',
+                                      style: TextStyle(
+                                        fontSize: isDesktop(context) ? 13 : 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              ExpansionTile(
+                                title: HoverWidget(
+                                  onHover: (void event) {
+                                    null;
+                                  },
+                                  hoverChild: const Text(
+                                    'Is there a mobile app?',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Is there a mobile app?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                iconColor: Colors.red,
+                                collapsedIconColor: Colors.blue,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      'A mobile application or app is a computer program or software application designed to run on a mobile device such as a phone, tablet, or watch. Mobile applications often stand in contrast to desktop applications which are designed to run on desktop computers, and web applications which run in mobile web browsers rather than directly on the mobile device.',
+                                      style: TextStyle(
+                                        fontSize: isDesktop(context) ? 13 : 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              ExpansionTile(
+                                title: HoverWidget(
+                                  onHover: (void event) {
+                                    null;
+                                  },
+                                  hoverChild: const Text(
+                                    'What about other chromium browsers?',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'What about other chromium browsers?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                                iconColor: Colors.red,
+                                collapsedIconColor: Colors.blue,
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      'Chromium is a free and open-source web browser project, mainly developed and maintained by Google. This codebase provides the vast majority of code for the Google Chrome browser, which is proprietary software and has some additional features.',
+                                      style: TextStyle(
+                                        fontSize: isDesktop(context) ? 13 : 16,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(
+                  flex: 1,
+                ),
+              ],
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
               children: [
                 const Text(
@@ -1331,13 +1545,7 @@ class FrequentlyAskedQuestions extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          const Spacer(
-            flex: 1,
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
 

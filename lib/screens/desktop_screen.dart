@@ -75,9 +75,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
             ),
             DownloadTheExtension(),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
+              padding: EdgeInsets.symmetric(vertical: 10),
               child: SizedBox(
-                height: 350,
+                height: 400,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -117,6 +117,9 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: 100,
             ),
             FrequentlyAskedQuestions(),
             Padding(
