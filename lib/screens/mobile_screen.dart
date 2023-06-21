@@ -33,6 +33,7 @@ class _MobileScreenState extends State<MobileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -57,14 +58,57 @@ class _MobileScreenState extends State<MobileScreen> {
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 80, bottom: 30),
+              padding: EdgeInsets.only(top: 50, bottom: 30),
               child: FirstSvg(),
             ),
             const ASimpleBookmarkManager(),
             const SizedBox(
               height: 120,
             ),
-            const FeaturesBox()
+            const FeaturesBox(),
+            const SizedBox(
+              height: 80,
+            ),
+            const SizedBox(
+              // color: Colors.blueGrey,
+              height: 500,
+              child: DefaultTabController(
+                length: 3,
+                child: Scaffold(
+                  backgroundColor: Colors.white,
+                  // extendBody: true,
+                  body: Column(
+                    children: [
+                      TabBar(
+                        isScrollable: true,
+                        labelColor: Colors.black,
+                        indicatorColor: Colors.red,
+                        tabs: [
+                          Tab(
+                            text: 'Simple Bookmarking',
+                          ),
+                          Tab(
+                            text: 'Speedy Searching',
+                          ),
+                          Tab(
+                            text: 'Easy Sharing',
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            SimpleBookmarking(),
+                            SpeedySearching(),
+                            EasySharing(),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

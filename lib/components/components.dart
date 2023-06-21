@@ -545,7 +545,7 @@ class ASimpleBookmarkManager extends StatelessWidget {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 40),
       child: SizedBox(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -596,31 +596,39 @@ class BookmarkInOneClick extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 80),
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 20),
       child: SizedBox(
         height: 350,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: isDesktop(context)
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'Bookmark in one click',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10, right: 80),
+              padding: EdgeInsets.only(
+                  top: 10, bottom: 10, right: isDesktop(context) ? 80 : 10),
               child: Text(
                 'Organize your bookmarks however you like. Our simple drag-and-drop interface gives you complete control over how you manage your favourite sites.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MoreInfoButton(),
+                isDesktop(context) ? const MoreInfoButton() : Container(),
               ],
             ),
           ],
@@ -635,14 +643,18 @@ class IntelligentSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 80),
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 20),
       child: SizedBox(
         height: 350,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: isDesktop(context)
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'Intelligent Search',
@@ -650,16 +662,18 @@ class IntelligentSearch extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10, right: 90),
+              padding: EdgeInsets.only(
+                  top: 10, bottom: 10, right: isDesktop(context) ? 90 : 10),
               child: Text(
                 'Our powerful search feature will help you find saved sites in no time at all. No need to trawl through all of your bookmarks.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MoreInfoButton(),
+                isDesktop(context) ? const MoreInfoButton() : Container(),
               ],
             ),
           ],
@@ -674,22 +688,24 @@ class ShareYourBookmarks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 80),
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 80),
       child: SizedBox(
         height: 350,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text(
                 'Share Your Bookmarks',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 10, right: 90),
+            const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
               child: Text(
                 'Easily share your bookmarks and collections with others. Create a shareable link that you can send at the clik of a button.',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
@@ -698,7 +714,7 @@ class ShareYourBookmarks extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MoreInfoButton(),
+                isDesktop(context) ? const MoreInfoButton() : Container(),
               ],
             ),
           ],
@@ -838,28 +854,56 @@ class SimpleBookmarking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 50,
-              ),
-              child: SvgPicture.asset(
-                SvgManager.websiteSearch2,
-                height: 500,
-              ),
-            )),
-        const Expanded(
-            flex: 1,
-            child: Center(
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: isDesktop(context) ? 50 : 20,
+                    ),
+                    child: SvgPicture.asset(
+                      SvgManager.websiteSearch2,
+                      height: 500,
+                    ),
+                  )),
+              const Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    child: BookmarkInOneClick(),
+                  )))
+            ],
+          )
+        : Column(
+            children: [
+              Expanded(
+                flex: 1,
                 child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50),
-              child: BookmarkInOneClick(),
-            )))
-      ],
-    );
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
+                  child: SvgPicture.asset(
+                    SvgManager.websiteSearch2,
+                    height: 500,
+                  ),
+                ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: BookmarkInOneClick(),
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }
 
@@ -868,28 +912,53 @@ class SpeedySearching extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 50,
-              ),
-              child: SvgPicture.asset(
-                SvgManager.websiteSetup,
-                height: 500,
-              ),
-            )),
-        const Expanded(
-            flex: 1,
-            child: Center(
-                child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50),
-              child: IntelligentSearch(),
-            )))
-      ],
-    );
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 50,
+                    ),
+                    child: SvgPicture.asset(
+                      SvgManager.websiteSetup,
+                      height: 500,
+                    ),
+                  )),
+              const Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    child: IntelligentSearch(),
+                  )))
+            ],
+          )
+        : Column(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                    ),
+                    child: SvgPicture.asset(
+                      SvgManager.websiteSetup,
+                      height: 500,
+                    ),
+                  )),
+              const Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: IntelligentSearch(),
+                  )))
+            ],
+          );
   }
 }
 
@@ -898,28 +967,53 @@ class EasySharing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 50,
-              ),
-              child: SvgPicture.asset(
-                SvgManager.websiteSetup2,
-                height: 500,
-              ),
-            )),
-        const Expanded(
-            flex: 1,
-            child: Center(
-                child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 50),
-              child: ShareYourBookmarks(),
-            )))
-      ],
-    );
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 50,
+                    ),
+                    child: SvgPicture.asset(
+                      SvgManager.websiteSetup2,
+                      height: 500,
+                    ),
+                  )),
+              const Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 50),
+                    child: ShareYourBookmarks(),
+                  )))
+            ],
+          )
+        : Column(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                    ),
+                    child: SvgPicture.asset(
+                      SvgManager.websiteSetup2,
+                      height: 500,
+                    ),
+                  )),
+              const Expanded(
+                  flex: 1,
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: ShareYourBookmarks(),
+                  )))
+            ],
+          );
   }
 }
 

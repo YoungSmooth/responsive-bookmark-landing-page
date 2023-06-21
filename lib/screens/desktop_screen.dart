@@ -39,6 +39,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
               child: DefaultTabController(
                 length: 3,
                 child: Scaffold(
+                  backgroundColor: Colors.white,
                   // extendBody: true,
                   body: Column(
                     children: [
