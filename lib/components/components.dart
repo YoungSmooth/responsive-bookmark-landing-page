@@ -130,10 +130,13 @@ class ContactUsButton extends StatefulWidget {
 class _ContactUsButtonState extends State<ContactUsButton> {
   @override
   Widget build(BuildContext context) {
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
     return Card(
       elevation: 4,
       child: HoverContainer(
         height: 50,
+        width: !isDesktop(context) ? double.infinity : null,
         hoverHeight: 50,
         decoration: BoxDecoration(
           color: Colors.red,
@@ -1567,94 +1570,195 @@ class _StayUpToDateState extends State<StayUpToDate> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 350,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
-      child: Row(
-        children: [
-          const Spacer(flex: 1),
-          Expanded(
-            flex: 1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Container(
+            height: 350,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+            child: Row(
               children: [
-                const Text(
-                  '35,000 +  ALREADY JOINED',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                const Text(
-                  "Stay up-to-date with what we're doing",
-                  style: TextStyle(color: Colors.white, fontSize: 30),
-                  textAlign: TextAlign.center,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      width: 220,
-                      child: Row(
+                const Spacer(flex: 1),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Text(
+                        '35,000 +  ALREADY JOINED',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      const Text(
+                        "Stay up-to-date with what we're doing",
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        textAlign: TextAlign.center,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Expanded(
-                            child: Form(
-                              key: _formKey,
-                              child: TextFormField(
-                                decoration: const InputDecoration(
-                                  hintText: 'Enter your email address',
-                                  border: OutlineInputBorder(),
-                                  fillColor: Colors.white,
-                                  filled: true,
+                          SizedBox(
+                            height: 50,
+                            width: 220,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Form(
+                                    key: _formKey,
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        hintText: 'Enter your email address',
+                                        border: OutlineInputBorder(),
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                      ),
+                                      keyboardType: TextInputType.emailAddress,
+                                      style: const TextStyle(fontSize: 11),
+                                      validator: (value) {
+                                        RegExp emailCheck = RegExp(
+                                          r"[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+                                          caseSensitive: false,
+                                        );
+                                        // RegExp ipCheck = RegExp(
+                                        //   r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
+                                        // );
+                                        // RegExp urlCheck = RegExp(
+                                        //   r"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?",
+                                        //   caseSensitive: false,
+                                        // );
+                                        // RegExp domainCheck = RegExp(
+                                        //   r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$",
+                                        // );
+                                        if (value == null || value.isEmpty) {
+                                          return "input your email";
+                                        } else if (!emailCheck
+                                            .hasMatch(value)) {
+                                          return "Whoops, make sure it's an email.";
+                                        }
+                                        // else if (!ipCheck.hasMatch(value)) {
+                                        //   return 'ip check.';
+                                        // } else if (!urlCheck.hasMatch(value)) {
+                                        //   return 'url check.';
+                                        // } else if (!domainCheck
+                                        //     .hasMatch(value)) {
+                                        //   return 'domain check.';
+                                        // }
+
+                                        else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                  ),
                                 ),
-                                keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(fontSize: 11),
-                                validator: (value) {
-                                  RegExp emailCheck = RegExp(
-                                    r"[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-                                    caseSensitive: false,
-                                  );
-                                  RegExp ipCheck = RegExp(
-                                    r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
-                                  );
-                                  RegExp urlCheck = RegExp(
-                                    r"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?",
-                                    caseSensitive: false,
-                                  );
-                                  RegExp domainCheck = RegExp(
-                                    r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$",
-                                  );
-                                  if (value == null || value.isEmpty) {
-                                    return "input your email";
-                                  } else if (!emailCheck.hasMatch(value)) {
-                                    return "Whoops, make sure it's an email.";
-                                  } else if (!ipCheck.hasMatch(value)) {
-                                    return 'ip check.';
-                                  } else if (!urlCheck.hasMatch(value)) {
-                                    return 'url check.';
-                                  } else if (!domainCheck.hasMatch(value)) {
-                                    return 'domain check.';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                              ),
+                              ],
                             ),
                           ),
+                          InkWell(
+                              onTap: _confirmEmail,
+                              child: const ContactUsButton())
                         ],
-                      ),
-                    ),
-                    InkWell(
-                        onTap: _confirmEmail, child: const ContactUsButton())
-                  ],
-                )
+                      )
+                    ],
+                  ),
+                ),
+                const Spacer(flex: 1),
               ],
             ),
-          ),
-          const Spacer(flex: 1),
-        ],
-      ),
-    );
+          )
+        : Container(
+            height: 350,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 30),
+                  const Text(
+                    '35,000 +  ALREADY JOINED',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Stay up-to-date with what we're doing",
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 30),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: SizedBox(
+                          height: 50,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Form(
+                                  key: _formKey,
+                                  child: TextFormField(
+                                    decoration: const InputDecoration(
+                                      hintText: 'Enter your email address',
+                                      border: OutlineInputBorder(),
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    style: const TextStyle(fontSize: 11),
+                                    validator: (value) {
+                                      RegExp emailCheck = RegExp(
+                                        r"[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+                                        caseSensitive: false,
+                                      );
+                                      RegExp ipCheck = RegExp(
+                                        r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
+                                      );
+                                      RegExp urlCheck = RegExp(
+                                        r"(http|ftp|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?",
+                                        caseSensitive: false,
+                                      );
+                                      RegExp domainCheck = RegExp(
+                                        r"^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$",
+                                      );
+                                      if (value == null || value.isEmpty) {
+                                        return "input your email";
+                                      } else if (!emailCheck.hasMatch(value)) {
+                                        return "Whoops, make sure it's an email.";
+                                      } else if (!ipCheck.hasMatch(value)) {
+                                        return 'ip check.';
+                                      } else if (!urlCheck.hasMatch(value)) {
+                                        return 'url check.';
+                                      } else if (!domainCheck.hasMatch(value)) {
+                                        return 'domain check.';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      InkWell(
+                          onTap: _confirmEmail, child: const ContactUsButton())
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
   }
 }
 
@@ -1663,72 +1767,139 @@ class LastRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: double.infinity,
-      color: const Color.fromARGB(255, 31, 31, 34),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 140),
-                child: SvgPicture.asset(
-                  SvgManager.logoBookmark,
-                  height: 20,
+    bool isDesktop(BuildContext context) =>
+        MediaQuery.of(context).size.width >= 1000;
+    return isDesktop(context)
+        ? Container(
+            height: 100,
+            width: double.infinity,
+            color: const Color.fromARGB(255, 31, 31, 34),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 140),
+                      child: SvgPicture.asset(
+                        SvgManager.logoBookmark,
+                        height: 20,
+                      ),
+                    ),
+                    const Padding(
+                        padding: EdgeInsets.only(left: 70, right: 20),
+                        child: FeaturesButton2()),
+                    const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: PricingButton2()),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: ContactButton2(),
+                    ),
+                  ],
                 ),
-              ),
-              const Padding(
-                  padding: EdgeInsets.only(left: 70, right: 20),
-                  child: FeaturesButton2()),
-              const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: PricingButton2()),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: ContactButton2(),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20, left: 20),
-                child: HoverWidget(
-                  onHover: (void event) {},
-                  hoverChild: SvgPicture.asset(
-                    SvgManager.facebook,
-                    height: 20,
-                    colorFilter:
-                        const ColorFilter.mode(Colors.red, BlendMode.srcIn),
-                  ),
-                  child: SvgPicture.asset(
-                    SvgManager.facebook,
-                    height: 20,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 140, left: 20),
-                child: HoverWidget(
-                  onHover: (void event) {},
-                  hoverChild: SvgPicture.asset(
-                    SvgManager.twitter,
-                    height: 20,
-                    colorFilter:
-                        const ColorFilter.mode(Colors.red, BlendMode.srcIn),
-                  ),
-                  child: SvgPicture.asset(
-                    SvgManager.twitter,
-                    height: 20,
-                  ),
-                ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20, left: 20),
+                      child: HoverWidget(
+                        onHover: (void event) {},
+                        hoverChild: SvgPicture.asset(
+                          SvgManager.facebook,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.red, BlendMode.srcIn),
+                        ),
+                        child: SvgPicture.asset(
+                          SvgManager.facebook,
+                          height: 20,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 140, left: 20),
+                      child: HoverWidget(
+                        onHover: (void event) {},
+                        hoverChild: SvgPicture.asset(
+                          SvgManager.twitter,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.red, BlendMode.srcIn),
+                        ),
+                        child: SvgPicture.asset(
+                          SvgManager.twitter,
+                          height: 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
-        ],
-      ),
-    );
+        : Container(
+            height: 350,
+            width: double.infinity,
+            color: const Color.fromARGB(255, 31, 31, 34),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SvgPicture.asset(
+                    SvgManager.logoBookmark,
+                    height: 25,
+                  ),
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: FeaturesButton2()),
+                const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.0),
+                    child: PricingButton2()),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.0),
+                  child: ContactButton2(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: HoverWidget(
+                        onHover: (void event) {},
+                        hoverChild: SvgPicture.asset(
+                          SvgManager.facebook,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.red, BlendMode.srcIn),
+                        ),
+                        child: SvgPicture.asset(
+                          SvgManager.facebook,
+                          height: 20,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: HoverWidget(
+                        onHover: (void event) {},
+                        hoverChild: SvgPicture.asset(
+                          SvgManager.twitter,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.red, BlendMode.srcIn),
+                        ),
+                        child: SvgPicture.asset(
+                          SvgManager.twitter,
+                          height: 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
   }
 }

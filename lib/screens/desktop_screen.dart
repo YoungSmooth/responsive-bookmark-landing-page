@@ -144,7 +144,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
               ),
             ),
             StayUpToDate(),
-            LastRow()
+            LastRow(),
           ],
         ),
       ),

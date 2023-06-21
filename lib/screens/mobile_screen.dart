@@ -30,10 +30,13 @@ class _MobileScreenState extends State<MobileScreen> {
   final String logoFirefox = 'assets/images/logo-firefox.svg';
   final String opera = 'assets/images/logo-opera.svg';
 
+  final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      drawer: _drawer(context),
+      key: _key,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -41,18 +44,23 @@ class _MobileScreenState extends State<MobileScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 30),
+                  padding: const EdgeInsets.only(left: 30, top: 50),
                   child: SvgPicture.asset(
                     SvgManager.logoBookmark,
-                    height: 20,
+                    height: 25,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 30, top: 30),
-                  child: Icon(
-                    Icons.menu,
-                    size: 25,
-                    color: Colors.black,
+                InkWell(
+                  onTap: () {
+                    _key.currentState!.openDrawer(); //<-- SEE HERE
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 30, top: 50),
+                    child: Icon(
+                      Icons.menu,
+                      size: 25,
+                      color: Colors.black,
+                    ),
                   ),
                 )
               ],
@@ -117,8 +125,142 @@ class _MobileScreenState extends State<MobileScreen> {
             const AddToOpera(),
             const SizedBox(height: 150),
             const FrequentlyAskedQuestions(),
+            const SizedBox(height: 40),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MoreInfoButton(),
+              ],
+            ),
+            const SizedBox(height: 150),
+            const StayUpToDate(),
+            const LastRow()
           ],
         ),
+      ),
+    );
+  }
+
+  Drawer _drawer(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.blueGrey.withOpacity(0.9),
+      width: double.infinity,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30, top: 50),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      SvgManager.logoBookmark,
+                      height: 25,
+                      color: Colors.white,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 25,
+                        weight: 50,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.grey),
+                      bottom: BorderSide(width: 0.3, color: Colors.grey),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 30),
+                      child: Text(
+                        'FEATURES',
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.grey),
+                      bottom: BorderSide(width: 0.3, color: Colors.grey),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 30),
+                      child: Text(
+                        'PRICING',
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.grey),
+                      bottom: BorderSide(width: 0.3, color: Colors.grey),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 30),
+                      child: Text(
+                        'CONTACT',
+                        style: TextStyle(color: Colors.white, fontSize: 30),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: const Border(
+                      top: BorderSide(width: 2, color: Colors.white),
+                      bottom: BorderSide(width: 2, color: Colors.white),
+                      left: BorderSide(width: 2, color: Colors.white),
+                      right: BorderSide(width: 2, color: Colors.white),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
