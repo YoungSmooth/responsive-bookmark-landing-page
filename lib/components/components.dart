@@ -11,51 +11,85 @@ class GetItOnChromeButton extends StatefulWidget {
   State<GetItOnChromeButton> createState() => _GetItOnChromeButtonState();
 }
 
-class _GetItOnChromeButtonState extends State<GetItOnChromeButton> {
+class _GetItOnChromeButtonState extends State<GetItOnChromeButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      reverseDuration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  late final Animation<Offset> _animation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(1.5, 0.0),
+  ).animate(
+    CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.elasticIn,
+    ),
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      child: HoverContainer(
-        height: 40,
-        hoverHeight: 39,
-        decoration: BoxDecoration(
-          color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(
-              width: 1,
-              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
-        ),
-        hoverDecoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(
-              width: 1,
-              color: createMaterialColor(ColorManager.kHslBlueColor.toColor())),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
-          child: Center(
-              child: HoverWidget(
-            onHover: (void event) {
-              setState(() {});
-            },
-            hoverChild: Text(
-              'Get it on Chrome',
-              style: TextStyle(
+    return SlideTransition(
+      position: _animation,
+      child: Card(
+        elevation: 4,
+        child: HoverContainer(
+          height: 40,
+          hoverHeight: 39,
+          decoration: BoxDecoration(
+            color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                width: 1,
                 color:
-                    createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-                fontSize: 13,
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+          ),
+          hoverDecoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                width: 1,
+                color:
+                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
+            child: Center(
+                child: HoverWidget(
+              onHover: (void event) {
+                setState(() {});
+              },
+              hoverChild: Text(
+                'Get it on Chrome',
+                style: TextStyle(
+                  color:
+                      createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+                  fontSize: 13,
+                ),
               ),
-            ),
-            child: const Text(
-              'Get it on Chrome',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
+              child: const Text(
+                'Get it on Chrome',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 13,
+                ),
               ),
-            ),
-          )),
+            )),
+          ),
         ),
       ),
     );
@@ -540,8 +574,42 @@ class _ContactButton2State extends State<ContactButton2> {
   }
 }
 
-class ASimpleBookmarkManager extends StatelessWidget {
+class ASimpleBookmarkManager extends StatefulWidget {
   const ASimpleBookmarkManager({super.key});
+
+  @override
+  State<ASimpleBookmarkManager> createState() => _ASimpleBookmarkManagerState();
+}
+
+class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      reverseDuration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  late final Animation<AlignmentGeometry> _animation = Tween<AlignmentGeometry>(
+    begin: Alignment.bottomLeft,
+    end: Alignment.center,
+  ).animate(
+    CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.decelerate,
+    ),
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -555,13 +623,18 @@ class ASimpleBookmarkManager extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: Text(
-                'A Simple Bookmark Manager',
-                style: TextStyle(
-                  fontSize: isDesktop(context) ? 45 : 35,
-                  fontWeight: FontWeight.bold,
+              child: AlignTransition(
+                widthFactor: 1,
+                heightFactor: 2,
+                alignment: _animation,
+                child: Text(
+                  'A Simple Bookmark Manager',
+                  style: TextStyle(
+                    fontSize: isDesktop(context) ? 45 : 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: !isDesktop(context) ? TextAlign.center : null,
                 ),
-                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
             ),
             Padding(
@@ -730,78 +803,169 @@ class ShareYourBookmarks extends StatelessWidget {
   }
 }
 
-class FirstSvg extends StatelessWidget {
+class FirstSvg extends StatefulWidget {
   const FirstSvg({super.key});
+
+  @override
+  State<FirstSvg> createState() => _FirstSvgState();
+}
+
+class _FirstSvgState extends State<FirstSvg> with TickerProviderStateMixin {
+  late final AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      reverseDuration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  late final Animation<double> _controller = CurvedAnimation(
+    parent: _animationController,
+    curve: Curves.easeInOutCubicEmphasized,
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 400,
       child: Center(
-        child: SvgPicture.asset(
-          SvgManager.websiteSearch,
-          height: 400,
+        child: GestureDetector(
+          onTap: () {
+            if (_animationController.isAnimating) {
+              _animationController.stop();
+            } else {
+              _animationController.reverse();
+            }
+          },
+          child: FadeTransition(
+            alwaysIncludeSemantics: true,
+            opacity: _controller,
+            child: SvgPicture.asset(
+              SvgManager.websiteSearch,
+              height: 400,
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-class FeaturesBox extends StatelessWidget {
+class FeaturesBox extends StatefulWidget {
   const FeaturesBox({super.key});
+
+  @override
+  State<FeaturesBox> createState() => _FeaturesBoxState();
+}
+
+class _FeaturesBoxState extends State<FeaturesBox>
+    with TickerProviderStateMixin {
+  late final AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      reverseDuration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  final DecorationTween decorationTween = DecorationTween(
+    begin: BoxDecoration(
+      color: const Color(0xFFFFFFFF),
+      border: Border.all(style: BorderStyle.none),
+      borderRadius: BorderRadius.circular(50.0),
+      boxShadow: const <BoxShadow>[
+        BoxShadow(
+          color: Colors.grey,
+          blurRadius: 10.0,
+          spreadRadius: 3.0,
+          offset: Offset(0, 6.0),
+        ),
+      ],
+    ),
+    end: BoxDecoration(
+      color: const Color(0xFFFFFFFF),
+      border: Border.all(
+        style: BorderStyle.none,
+      ),
+      borderRadius: BorderRadius.zero,
+    ),
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
-    return Row(
-      children: [
-        isDesktop(context)
-            ? const Spacer(
-                flex: 1,
-              )
-            : Container(),
-        Expanded(
-          flex: 1,
-          child: Column(
-            children: [
-              Padding(
-                padding: isDesktop(context)
-                    ? const EdgeInsets.only(top: 50)
-                    : const EdgeInsets.only(top: 0),
-                child: Text(
-                  'Features',
-                  style: TextStyle(
-                      fontSize: isDesktop(context) ? 20 : 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: isDesktop(context)
-                    ? const EdgeInsets.only(top: 10, bottom: 10)
-                    : const EdgeInsets.only(left: 40, right: 40),
-                child: const Align(
-                  alignment: Alignment.center,
+    return DecoratedBoxTransition(
+      decoration: decorationTween.animate(_animationController),
+      child: Row(
+        children: [
+          isDesktop(context)
+              ? const Spacer(
+                  flex: 1,
+                )
+              : Container(),
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                Padding(
+                  padding: isDesktop(context)
+                      ? const EdgeInsets.only(top: 20)
+                      : const EdgeInsets.only(top: 0),
                   child: Text(
-                    'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
+                    'Features',
                     style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                    textAlign: TextAlign.center,
+                        fontSize: isDesktop(context) ? 20 : 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: isDesktop(context)
+                      ? const EdgeInsets.only(top: 10, bottom: 10)
+                      : const EdgeInsets.only(left: 40, right: 40),
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        isDesktop(context)
-            ? const Spacer(
-                flex: 1,
-              )
-            : Container(),
-      ],
+          isDesktop(context)
+              ? const Spacer(
+                  flex: 1,
+                )
+              : Container(),
+        ],
+      ),
     );
   }
 }
@@ -1054,8 +1218,31 @@ class EasySharing extends StatelessWidget {
   }
 }
 
-class AddToChrome extends StatelessWidget {
+class AddToChrome extends StatefulWidget {
   const AddToChrome({super.key});
+
+  @override
+  State<AddToChrome> createState() => _AddToChromeState();
+}
+
+class _AddToChromeState extends State<AddToChrome>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 15),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1070,9 +1257,22 @@ class AddToChrome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset(
-                SvgManager.logoChrome,
-                height: 80,
+              GestureDetector(
+                onTap: () {
+                  if (_animationController.isAnimating) {
+                    _animationController.stop();
+                  } else {
+                    _animationController.repeat();
+                  }
+                },
+                child: RotationTransition(
+                  turns: _animationController,
+                  alignment: Alignment.center,
+                  child: SvgPicture.asset(
+                    SvgManager.logoChrome,
+                    height: 80,
+                  ),
+                ),
               ),
               const Text(
                 'Add to Chrome',
@@ -1098,8 +1298,36 @@ class AddToChrome extends StatelessWidget {
   }
 }
 
-class AddToFirefox extends StatelessWidget {
+class AddToFirefox extends StatefulWidget {
   const AddToFirefox({super.key});
+
+  @override
+  State<AddToFirefox> createState() => _AddToFirefoxState();
+}
+
+class _AddToFirefoxState extends State<AddToFirefox>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 15),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _animationController,
+    curve: Curves.fastOutSlowIn,
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1114,9 +1342,23 @@ class AddToFirefox extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset(
-                SvgManager.logoFirefox,
-                height: 80,
+              GestureDetector(
+                onTap: () {
+                  if (_animationController.isAnimating) {
+                    _animationController.stop();
+                  } else {
+                    _animationController.repeat();
+                  }
+                },
+                child: SizeTransition(
+                  sizeFactor: _animation,
+                  axis: Axis.horizontal,
+                  axisAlignment: 0.5,
+                  child: SvgPicture.asset(
+                    SvgManager.logoFirefox,
+                    height: 80,
+                  ),
+                ),
               ),
               const Text(
                 'Add to Firefox',
@@ -1142,8 +1384,33 @@ class AddToFirefox extends StatelessWidget {
   }
 }
 
-class AddToOpera extends StatelessWidget {
+class AddToOpera extends StatefulWidget {
   const AddToOpera({super.key});
+
+  @override
+  State<AddToOpera> createState() => _AddToOperaState();
+}
+
+class _AddToOperaState extends State<AddToOpera>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      lowerBound: 0.7,
+      upperBound: 1,
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1158,9 +1425,21 @@ class AddToOpera extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset(
-                SvgManager.opera,
-                height: 80,
+              GestureDetector(
+                onTap: () {
+                  if (_animationController.isAnimating) {
+                    _animationController.fling();
+                  } else {
+                    _animationController.repeat();
+                  }
+                },
+                child: ScaleTransition(
+                  scale: _animationController,
+                  child: SvgPicture.asset(
+                    SvgManager.opera,
+                    height: 80,
+                  ),
+                ),
               ),
               const Text(
                 'Add to Opera',
@@ -1559,7 +1838,37 @@ class StayUpToDate extends StatefulWidget {
   State<StayUpToDate> createState() => _StayUpToDateState();
 }
 
-class _StayUpToDateState extends State<StayUpToDate> {
+class _StayUpToDateState extends State<StayUpToDate>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
+  late TextStyleTween _styleTween;
+  late CurvedAnimation _curvedAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat(reverse: true);
+    _styleTween = TextStyleTween(
+      begin: const TextStyle(
+          fontSize: 25, color: Colors.red, fontWeight: FontWeight.w900),
+      end: const TextStyle(
+          fontSize: 25, color: Colors.red, fontWeight: FontWeight.w100),
+    );
+    _curvedAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   void _confirmEmail() {
@@ -1591,10 +1900,13 @@ class _StayUpToDateState extends State<StayUpToDate> {
                         '35,000 +  ALREADY JOINED',
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
-                      const Text(
-                        "Stay up-to-date with what we're doing",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                        textAlign: TextAlign.center,
+                      DefaultTextStyleTransition(
+                        style: _styleTween.animate(_curvedAnimation),
+                        child: const Text(
+                          "Stay up-to-date with what we're doing",
+                          style: TextStyle(color: Colors.white, fontSize: 30),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1686,10 +1998,13 @@ class _StayUpToDateState extends State<StayUpToDate> {
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Stay up-to-date with what we're doing",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                    textAlign: TextAlign.center,
+                  DefaultTextStyleTransition(
+                    style: _styleTween.animate(_curvedAnimation),
+                    child: const Text(
+                      "Stay up-to-date with what we're doing",
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(height: 30),
                   Column(

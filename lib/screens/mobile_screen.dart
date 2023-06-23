@@ -158,7 +158,8 @@ class _MobileScreenState extends State<MobileScreen> {
                     SvgPicture.asset(
                       SvgManager.logoBookmark,
                       height: 25,
-                      color: Colors.white,
+                      colorFilter:
+                          const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                     ),
                     InkWell(
                       onTap: () {
