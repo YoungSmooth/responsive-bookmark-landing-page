@@ -1,8 +1,11 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:bookmark_landing_page/constants/constants.dart';
 import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hovering/hovering.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class GetItOnChromeButton extends StatefulWidget {
   const GetItOnChromeButton({super.key});
@@ -43,52 +46,55 @@ class _GetItOnChromeButtonState extends State<GetItOnChromeButton>
 
   @override
   Widget build(BuildContext context) {
-    return SlideTransition(
-      position: _animation,
-      child: Card(
-        elevation: 4,
-        child: HoverContainer(
-          height: 40,
-          hoverHeight: 39,
-          decoration: BoxDecoration(
-            color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                width: 1,
-                color:
-                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
-          ),
-          hoverDecoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(
-                width: 1,
-                color:
-                    createMaterialColor(ColorManager.kHslBlueColor.toColor())),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
-            child: Center(
-                child: HoverWidget(
-              onHover: (void event) {
-                setState(() {});
-              },
-              hoverChild: Text(
-                'Get it on Chrome',
-                style: TextStyle(
-                  color:
-                      createMaterialColor(ColorManager.kHslBlueColor.toColor()),
-                  fontSize: 13,
+    return AnimatedSwitcher(
+      duration: const Duration(seconds: 1),
+      child: SlideTransition(
+        position: _animation,
+        child: Card(
+          elevation: 4,
+          child: HoverContainer(
+            height: 40,
+            hoverHeight: 39,
+            decoration: BoxDecoration(
+              color: createMaterialColor(ColorManager.kHslBlueColor.toColor()),
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                  width: 1,
+                  color: createMaterialColor(
+                      ColorManager.kHslBlueColor.toColor())),
+            ),
+            hoverDecoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                  width: 1,
+                  color: createMaterialColor(
+                      ColorManager.kHslBlueColor.toColor())),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 5, 15, 8),
+              child: Center(
+                  child: HoverWidget(
+                onHover: (void event) {
+                  setState(() {});
+                },
+                hoverChild: Text(
+                  'Get it on Chrome',
+                  style: TextStyle(
+                    color: createMaterialColor(
+                        ColorManager.kHslBlueColor.toColor()),
+                    fontSize: 13,
+                  ),
                 ),
-              ),
-              child: const Text(
-                'Get it on Chrome',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
+                child: const Text(
+                  'Get it on Chrome',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                  ),
                 ),
-              ),
-            )),
+              )),
+            ),
           ),
         ),
       ),
@@ -582,7 +588,7 @@ class ASimpleBookmarkManager extends StatefulWidget {
 }
 
 class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -595,15 +601,15 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
     )..repeat(reverse: true);
   }
 
-  late final Animation<AlignmentGeometry> _animation = Tween<AlignmentGeometry>(
-    begin: Alignment.bottomLeft,
-    end: Alignment.center,
-  ).animate(
-    CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.decelerate,
-    ),
-  );
+  // late final Animation<Offset> _animation = Tween<Offset>(
+  //   begin: Offset.zero,
+  //   end: const Offset(1.5, 0.0),
+  // ).animate(
+  //   CurvedAnimation(
+  //     parent: _animationController,
+  //     curve: Curves.elasticIn,
+  //   ),
+  // );
 
   @override
   void dispose() {
@@ -615,6 +621,7 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
   Widget build(BuildContext context) {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
+    Widget getItOnChrome = const GetItOnChromeButton();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: isDesktop(context) ? 80 : 40),
       child: SizedBox(
@@ -623,10 +630,14 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: AlignTransition(
-                widthFactor: 1,
-                heightFactor: 2,
-                alignment: _animation,
+              child: Animate(
+                onPlay: (controller) => controller.repeat(reverse: true),
+                autoPlay: true,
+                effects: const [
+                  ScaleEffect(
+                      duration: Duration(seconds: 10),
+                      curve: FlippedCurve(Curves.easeInExpo)),
+                ],
                 child: Text(
                   'A Simple Bookmark Manager',
                   style: TextStyle(
@@ -652,9 +663,17 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
               mainAxisAlignment: !isDesktop(context)
                   ? MainAxisAlignment.spaceEvenly
                   : MainAxisAlignment.start,
-              children: const [
-                GetItOnChromeButton(),
-                Padding(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(
+                        () => getItOnChrome = const GetItOnFirefoxButton());
+                  },
+                  child: const AnimatedSwitcher(
+                      duration: Duration(seconds: 1),
+                      child: GetItOnChromeButton()),
+                ),
+                const Padding(
                   padding: EdgeInsets.only(left: 5),
                   child: GetItOnFirefoxButton(),
                 )

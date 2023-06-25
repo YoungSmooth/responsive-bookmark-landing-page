@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^5.0.0
   flutter_svg: ^2.0.6
   hovering: ^1.0.4
+  flutter_animate: ^4.2.0
 
 dev_dependencies:
   flutter_test:
