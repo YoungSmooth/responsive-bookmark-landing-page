@@ -887,104 +887,101 @@ class FeaturesBox extends StatefulWidget {
   State<FeaturesBox> createState() => _FeaturesBoxState();
 }
 
-class _FeaturesBoxState extends State<FeaturesBox>
-    with TickerProviderStateMixin {
-  late final AnimationController _animationController;
+class _FeaturesBoxState extends State<FeaturesBox> {
+  //   with TickerProviderStateMixin {
+  // late final AnimationController _animationController;
 
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      reverseDuration: const Duration(seconds: 5),
-      duration: const Duration(seconds: 5),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //     reverseDuration: const Duration(seconds: 5),
+  //     duration: const Duration(seconds: 5),
+  //     vsync: this,
+  //   )..repeat(reverse: true);
+  // }
 
-  final DecorationTween decorationTween = DecorationTween(
-    begin: BoxDecoration(
-      color: const Color(0xFFFFFFFF),
-      border: Border.all(style: BorderStyle.none),
-      borderRadius: BorderRadius.circular(50.0),
-      boxShadow: const <BoxShadow>[
-        BoxShadow(
-          color: Colors.grey,
-          blurRadius: 10.0,
-          spreadRadius: 3.0,
-          offset: Offset(0, 6.0),
-        ),
-      ],
-    ),
-    end: BoxDecoration(
-      color: const Color(0xFFFFFFFF),
-      border: Border.all(
-        style: BorderStyle.none,
-      ),
-      borderRadius: BorderRadius.zero,
-    ),
-  );
+  // final DecorationTween decorationTween = DecorationTween(
+  //   begin: BoxDecoration(
+  //     color: const Color(0xFFFFFFFF),
+  //     border: Border.all(style: BorderStyle.none),
+  //     borderRadius: BorderRadius.circular(50.0),
+  //     boxShadow: const <BoxShadow>[
+  //       BoxShadow(
+  //         color: Colors.grey,
+  //         blurRadius: 10.0,
+  //         spreadRadius: 3.0,
+  //         offset: Offset(0, 6.0),
+  //       ),
+  //     ],
+  //   ),
+  //   end: BoxDecoration(
+  //     color: const Color(0xFFFFFFFF),
+  //     border: Border.all(
+  //       style: BorderStyle.none,
+  //     ),
+  //     borderRadius: BorderRadius.zero,
+  //   ),
+  // );
 
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _animationController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     bool isDesktop(BuildContext context) =>
         MediaQuery.of(context).size.width >= 1000;
-    return DecoratedBoxTransition(
-      decoration: decorationTween.animate(_animationController),
-      child: Row(
-        children: [
-          isDesktop(context)
-              ? const Spacer(
-                  flex: 1,
-                )
-              : Container(),
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Padding(
-                  padding: isDesktop(context)
-                      ? const EdgeInsets.only(top: 20)
-                      : const EdgeInsets.only(top: 0),
+    return Row(
+      children: [
+        isDesktop(context)
+            ? const Spacer(
+                flex: 1,
+              )
+            : Container(),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              Padding(
+                padding: isDesktop(context)
+                    ? const EdgeInsets.only(top: 20)
+                    : const EdgeInsets.only(top: 0),
+                child: Text(
+                  'Features',
+                  style: TextStyle(
+                      fontSize: isDesktop(context) ? 20 : 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: isDesktop(context)
+                    ? const EdgeInsets.only(top: 10, bottom: 10)
+                    : const EdgeInsets.only(left: 40, right: 40),
+                child: const Align(
+                  alignment: Alignment.center,
                   child: Text(
-                    'Features',
+                    'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
                     style: TextStyle(
-                        fontSize: isDesktop(context) ? 20 : 25,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Padding(
-                  padding: isDesktop(context)
-                      ? const EdgeInsets.only(top: 10, bottom: 10)
-                      : const EdgeInsets.only(left: 40, right: 40),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Our aim is to make it quick and easy for you to access your favourite websites. Your bookmarks sync between your devices so you can access them on the go.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                      textAlign: TextAlign.center,
+                      fontSize: 16,
+                      color: Colors.grey,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          isDesktop(context)
-              ? const Spacer(
-                  flex: 1,
-                )
-              : Container(),
-        ],
-      ),
+        ),
+        isDesktop(context)
+            ? const Spacer(
+                flex: 1,
+              )
+            : Container(),
+      ],
     );
   }
 }

@@ -10,35 +10,35 @@ class MobileScreen extends StatefulWidget {
   State<MobileScreen> createState() => _MobileScreenState();
 }
 
-class _MobileScreenState extends State<MobileScreen>
-    with TickerProviderStateMixin {
-  late AnimationController _animationController;
+class _MobileScreenState extends State<MobileScreen> {
+  //   with TickerProviderStateMixin {
+  // late AnimationController _animationController;
 
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      reverseDuration: const Duration(seconds: 1),
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //     reverseDuration: const Duration(seconds: 1),
+  //     duration: const Duration(seconds: 1),
+  //     vsync: this,
+  //   )..repeat(reverse: true);
+  // }
 
-  late final Animation<AlignmentGeometry> _animation = Tween<AlignmentGeometry>(
-    begin: Alignment.bottomLeft,
-    end: Alignment.center,
-  ).animate(
-    CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.decelerate,
-    ),
-  );
+  // late final Animation<AlignmentGeometry> _animation = Tween<AlignmentGeometry>(
+  //   begin: Alignment.bottomLeft,
+  //   end: Alignment.center,
+  // ).animate(
+  //   CurvedAnimation(
+  //     parent: _animationController,
+  //     curve: Curves.decelerate,
+  //   ),
+  // );
 
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _animationController.dispose();
+  // }
 
   final String bgDots = 'assets/images/bg-dots.svg';
   final String iconArrow = 'assets/images/icon-arrow.svg';
@@ -74,15 +74,17 @@ class _MobileScreenState extends State<MobileScreen>
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 30, top: 50),
-                  child: AlignTransition(
-                    widthFactor: 1,
-                    heightFactor: 2,
-                    alignment: _animation,
-                    child: SvgPicture.asset(
-                      SvgManager.logoBookmark,
-                      height: 25,
-                    ),
+                  child:
+                      //  AlignTransition(
+                      //   widthFactor: 1,
+                      //   heightFactor: 2,
+                      //   alignment: _animation,
+                      //   child:
+                      SvgPicture.asset(
+                    SvgManager.logoBookmark,
+                    height: 25,
                   ),
+                  // ),
                 ),
                 InkWell(
                   onTap: () {
