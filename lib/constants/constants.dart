@@ -32,4 +32,5 @@ class SvgManager {
   static const String websiteSearch2 = 'assets/images/website-search2.svg';
   static const String websiteSetup = 'assets/images/website-setup.svg';
   static const String websiteSetup2 = 'assets/images/website-setup2.svg';
+  static const String logoWhite = 'assets/images/svgwhite.svg';
 }

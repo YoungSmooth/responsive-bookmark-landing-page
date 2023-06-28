@@ -5,7 +5,7 @@ import 'package:bookmark_landing_page/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hovering/hovering.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+// import 'package:flutter_animate/flutter_animate.dart';
 
 class GetItOnChromeButton extends StatefulWidget {
   const GetItOnChromeButton({super.key});
@@ -587,19 +587,19 @@ class ASimpleBookmarkManager extends StatefulWidget {
   State<ASimpleBookmarkManager> createState() => _ASimpleBookmarkManagerState();
 }
 
-class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
+class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager> {
+  //   with SingleTickerProviderStateMixin {
+  // late AnimationController _animationController;
 
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      reverseDuration: const Duration(seconds: 5),
-      duration: const Duration(seconds: 5),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _animationController = AnimationController(
+  //     reverseDuration: const Duration(seconds: 5),
+  //     duration: const Duration(seconds: 5),
+  //     vsync: this,
+  //   )..repeat(reverse: true);
+  // }
 
   // late final Animation<Offset> _animation = Tween<Offset>(
   //   begin: Offset.zero,
@@ -611,11 +611,11 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
   //   ),
   // );
 
-  @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _animationController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -630,23 +630,25 @@ class _ASimpleBookmarkManagerState extends State<ASimpleBookmarkManager>
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: Animate(
-                onPlay: (controller) => controller.repeat(reverse: true),
-                autoPlay: true,
-                effects: const [
-                  ScaleEffect(
-                      duration: Duration(seconds: 10),
-                      curve: FlippedCurve(Curves.easeInExpo)),
-                ],
-                child: Text(
-                  'A Simple Bookmark Manager',
-                  style: TextStyle(
-                    fontSize: isDesktop(context) ? 45 : 35,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: !isDesktop(context) ? TextAlign.center : null,
+              child:
+                  // Animate(
+                  //   onPlay: (controller) => controller.repeat(reverse: true),
+                  //   autoPlay: true,
+                  //   effects: const [
+                  //     ScaleEffect(
+                  //         duration: Duration(seconds: 10),
+                  //         curve: FlippedCurve(Curves.easeInExpo)),
+                  //   ],
+                  //   child:
+                  Text(
+                'A Simple Bookmark Manager',
+                style: TextStyle(
+                  fontSize: isDesktop(context) ? 45 : 35,
+                  fontWeight: FontWeight.bold,
                 ),
+                textAlign: !isDesktop(context) ? TextAlign.center : null,
               ),
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -1329,7 +1331,7 @@ class _AddToFirefoxState extends State<AddToFirefox>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(seconds: 15),
+      duration: const Duration(seconds: 5),
       vsync: this,
     )..repeat(reverse: true);
   }
@@ -1417,7 +1419,7 @@ class _AddToOperaState extends State<AddToOpera>
     _animationController = AnimationController(
       lowerBound: 0.7,
       upperBound: 1,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
   }
@@ -2113,12 +2115,17 @@ class LastRow extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 140),
                       child: SvgPicture.asset(
+                        alignment: Alignment.center,
                         SvgManager.logoBookmark,
-                        height: 20,
+                        // logoWhite,
+                        // height: 10,
+                        // width: 20,
                       ),
                     ),
                     const Padding(
-                        padding: EdgeInsets.only(left: 70, right: 20),
+                        padding: EdgeInsets.
+                            // symmetric(horizontal: 20.0),
+                            only(left: 70, right: 20),
                         child: FeaturesButton2()),
                     const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.0),

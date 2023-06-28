@@ -81,7 +81,10 @@ class _MobileScreenState extends State<MobileScreen> {
                       //   alignment: _animation,
                       //   child:
                       SvgPicture.asset(
-                    SvgManager.logoBookmark,
+                    SvgManager.
+                        //
+                        // logoWhite,
+                        logoBookmark,
                     height: 25,
                   ),
                   // ),
@@ -192,7 +195,10 @@ class _MobileScreenState extends State<MobileScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SvgPicture.asset(
-                      SvgManager.logoBookmark,
+                      SvgManager.
+                          //
+                          // logoWhite,
+                          logoBookmark,
                       height: 25,
                       colorFilter:
                           const ColorFilter.mode(Colors.white, BlendMode.srcIn),
